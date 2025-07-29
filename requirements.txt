@@ -1,0 +1,26 @@
+# Landing AI and Computer Vision
+landingai==0.3.7
+opencv-python==4.8.1.78
+
+# GPS and Location Services
+gpsd-py3==0.3.0
+pyserial==3.5
+pynmea2==1.19.0
+
+# Data Processing and Utilities
+numpy>=1.21.0
+python-dotenv==1.0.0
+
+# Image and Data Handling
+Pillow>=8.3.0
+matplotlib>=3.5.0
+
+# Network and API
+requests>=2.25.0
+urllib3>=1.26.0
+certifi>=2021.10.0
+
+# Development and Testing (Optional)
+pytest>=6.0.0
+black>=21.0.0
+flake8>=3.9.0
