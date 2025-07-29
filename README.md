@@ -552,8 +552,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-**Author**: Tejas Patel
-**Project Link**: [https://github.com/YOUR_USERNAME/pothole-detection-jetson](https://github.com/YOUR_USERNAME/pothole-detection-jetson)
+**Author**: Tejas Bharadwaj
+**Project Link**: [https://github.com/tejas991/pothole-detection-jetson](https://github.com/YOUR_USERNAME/pothole-detection-jetson)
 
 ---
 
