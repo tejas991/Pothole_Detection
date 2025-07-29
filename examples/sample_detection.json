@@ -1,0 +1,38 @@
+{
+  "timestamp": "20241128_143022_456",
+  "analysis_id": 47,
+  "image_file": "pothole_20241128_143022_456.jpg",
+  "gps_location": {
+    "latitude": 33.684673,
+    "longitude": -117.826543,
+    "altitude": 45.2,
+    "speed": 0.0,
+    "timestamp": "2024-11-28T14:30:22.456789",
+    "fix_quality": 1,
+    "satellites": 8
+  },
+  "detections": [
+    {
+      "confidence": 0.87,
+      "label": "pothole",
+      "bbox": {
+        "x1": 245,
+        "y1": 156,
+        "x2": 398,
+        "y2": 289
+      },
+      "gps_location": {
+        "latitude": 33.684673,
+        "longitude": -117.826543
+      },
+      "timestamp": "20241128_143022_456",
+      "analysis_id": 47
+    }
+  ],
+  "total_detections": 1,
+  "camera_settings": {
+    "width": 640,
+    "height": 480,
+    "camera_id": 0
+  }
+}
