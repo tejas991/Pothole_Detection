@@ -237,8 +237,8 @@ def capture_with_opencv_and_gps():
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
     
     print(f"✅ Camera {CAMERA_ID} opened successfully")
-    print(f"🎥 Capturing every {CAPTURE_INTERVAL} seconds")
-    print("🖥️ Camera feed will be displayed with GPS info")
+    print(f"Capturing every {CAPTURE_INTERVAL} seconds")
+    print("Camera feed will be displayed with GPS info")
     print("Press 'q' in camera window or Ctrl+C to stop")
     
     # Create camera display window
@@ -323,7 +323,7 @@ def capture_with_opencv_and_gps():
             analysis_count += 1
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")[:-3]
             
-            print(f"📸 Analysis {analysis_count} (Frame {frame_count}): {timestamp}")
+            print(f"Analysis {analysis_count} (Frame {frame_count}): {timestamp}")
             if current_location:
                 print(f"   Location: {current_location['latitude']:.6f}, {current_location['longitude']:.6f}")
             
@@ -423,7 +423,7 @@ def capture_with_opencv_and_gps():
                         for i, detection in enumerate(detections_data):
                             print(f"      Detection {i+1}: {detection['confidence']:.2f} confidence")
                             if current_location:
-                                print(f"         📍 GPS: {current_location['latitude']:.6f}, {current_location['longitude']:.6f}")
+                                print(f"         GPS: {current_location['latitude']:.6f}, {current_location['longitude']:.6f}")
                         
                         # Save detection image and data
                         final_filename = f"pothole_{timestamp}.jpg"
@@ -539,14 +539,14 @@ def main():
 
 def test_camera_only():
     """Test camera without GPS"""
-    print("🔍 Testing camera...")
+    print("Testing camera...")
     
     cap = cv2.VideoCapture(CAMERA_ID)
     if not cap.isOpened():
         print(f"❌ Cannot open camera {CAMERA_ID}")
         return
     
-    print("📺 Showing 5-second preview (press 'q' to skip)")
+    print("Showing 5-second preview (press 'q' to skip)")
     start_time = time.time()
     
     while (time.time() - start_time) < 5:
