@@ -20,7 +20,7 @@ try:
     print("✅ GPS module available")
 except ImportError:
     GPS_AVAILABLE = False
-    print("⚠️ GPS module not available - install with: pip install gpsd-py3")
+    print("GPS module not available - install with: pip install gpsd-py3")
 
 # Alternative GPS using serial (for USB GPS dongles)
 try:
@@ -30,12 +30,12 @@ try:
 except ImportError:
     SERIAL_GPS_AVAILABLE = False
 
-# YOUR LANDING AI CREDENTIALS - UPDATE THESE
+# YOUR LANDING AI CREDENTIALS - (update these in nano mode)
 ENDPOINT_ID = "your-endpoint-id-here"
 API_KEY = "land_sk_your-api-key-here"
 
 # CONFIGURATION
-CAMERA_ID = 0           # Usually 0 for first camera
+CAMERA_ID = 0           # Whichever camera works for you
 CAPTURE_INTERVAL = 2.0  # Seconds between captures
 CONFIDENCE_THRESHOLD = 0.5  # Minimum confidence to consider a detection
 SHOW_CAMERA = True      # Show live camera feed
@@ -54,7 +54,7 @@ class GPSTracker:
         self.serial_connection = None
         self.last_known_location = None
         self.mock_location = {
-            "latitude": 33.6846,   # Irvine, CA (example)
+            "latitude": 33.6846,   # Irvine, CA (example, use gpa modeule for exact)
             "longitude": -117.8265,
             "altitude": 50.0,
             "speed": 0.0
@@ -66,29 +66,28 @@ class GPSTracker:
         """Initialize GPS connection based on available methods"""
         
         if self.method == "auto":
-            # Try different methods in order of preference
             if self._try_gpsd():
                 self.method = "gpsd"
-                print("📍 Using GPSD for GPS")
+                print("Using GPSD for GPS")
             elif self._try_serial_gps():
                 self.method = "serial"
-                print("📍 Using Serial GPS")
+                print("Using Serial GPS")
             else:
                 self.method = "mock"
-                print("📍 Using mock GPS coordinates (for testing)")
+                print("Using mock GPS coordinates (for testing)")
         
         elif self.method == "gpsd":
             if not self._try_gpsd():
-                print("❌ GPSD not available, falling back to mock")
+                print("GPSD not available, falling back to mock")
                 self.method = "mock"
         
         elif self.method == "serial":
             if not self._try_serial_gps():
-                print("❌ Serial GPS not available, falling back to mock")
+                print("Serial GPS not available, falling back to mock")
                 self.method = "mock"
         
         elif self.method == "mock":
-            print("📍 Using mock GPS coordinates")
+            print("Using mock GPS coordinates")
     
     def _try_gpsd(self):
         """Try to connect to GPSD"""
@@ -190,7 +189,7 @@ class GPSTracker:
 def capture_with_opencv_and_gps():
     """Main function with GPS tracking"""
     
-    print("🚀 Jetson Camera to Landing AI with GPS")
+    print("Jetson Camera to Landing AI with GPS")
     print("=" * 45)
     
     # Check credentials
@@ -210,9 +209,9 @@ def capture_with_opencv_and_gps():
     for directory in [output_dir, screenshots_dir, logs_dir]:
         os.makedirs(directory, exist_ok=True)
     
-    print(f"📁 Saving data to: {output_dir}")
-    print(f"   🖼️ Images: {screenshots_dir}")
-    print(f"   📄 Logs: {logs_dir}")
+    print(f"Saving data to: {output_dir}")
+    print(f"  Images: {screenshots_dir}")
+    print(f"  Logs: {logs_dir}")
     
     # Initialize Landing AI
     try:
@@ -264,7 +263,7 @@ def capture_with_opencv_and_gps():
     
     # Log session start
     log_to_daily_file(f"Session started - Camera {CAMERA_ID}, Interval {CAPTURE_INTERVAL}s")
-    print(f"📝 Daily log: {daily_log_filename}")
+    print(f"Daily log: {daily_log_filename}")
     
     try:
         while True:
@@ -310,7 +309,7 @@ def capture_with_opencv_and_gps():
                 # Check for quit key
                 key = cv2.waitKey(1) & 0xFF
                 if key == ord('q'):
-                    print("🛑 User pressed 'q' to quit")
+                    print("User pressed 'q' to quit")
                     break
             
             frame_count += 1
@@ -326,7 +325,7 @@ def capture_with_opencv_and_gps():
             
             print(f"📸 Analysis {analysis_count} (Frame {frame_count}): {timestamp}")
             if current_location:
-                print(f"   📍 Location: {current_location['latitude']:.6f}, {current_location['longitude']:.6f}")
+                print(f"   Location: {current_location['latitude']:.6f}, {current_location['longitude']:.6f}")
             
             try:
                 # Save frame temporarily
@@ -344,12 +343,12 @@ def capture_with_opencv_and_gps():
                 for attempt in range(max_retries):
                     try:
                         frame.run_predict(predictor=predictor)
-                        print("   ✅ Sent to Landing AI")
+                        print("   Sent to Landing AI")
                         break
                     except Exception as e:
                         if "429" in str(e) or "Too Many Requests" in str(e):
                             if attempt < max_retries - 1:
-                                print(f"   ⏳ Rate limited, waiting {retry_delay} seconds...")
+                                print(f"   Rate limited, waiting {retry_delay} seconds...")
                                 time.sleep(retry_delay)
                                 retry_delay *= 2
                             else:
@@ -400,10 +399,10 @@ def capture_with_opencv_and_gps():
                                             'y2': int(bbox_obj.get('y2', bbox_obj.get('bottom', 0)))
                                         }
                                     else:
-                                        print(f"   ⚠️ Unknown bbox format: {type(bbox_obj)}")
+                                        print(f"   Unknown bbox format: {type(bbox_obj)}")
                                         bbox = None
                                 except Exception as e:
-                                    print(f"   ⚠️ Bbox parsing error: {e}")
+                                    print(f"   Bbox parsing error: {e}")
                                     bbox = None
                             
                             detection_data = {
@@ -418,7 +417,7 @@ def capture_with_opencv_and_gps():
                     
                     if potholes_found > 0:
                         detection_count += potholes_found
-                        print(f"   🚨 POTHOLE DETECTED! Found {potholes_found} pothole(s)")
+                        print(f"   POTHOLE DETECTED! Found {potholes_found} pothole(s)")
                         
                         # Print detection details
                         for i, detection in enumerate(detections_data):
@@ -458,8 +457,8 @@ def capture_with_opencv_and_gps():
                             log_message += f", GPS: {current_location['latitude']:.6f},{current_location['longitude']:.6f}"
                         log_to_daily_file(log_message)
                         
-                        print(f"   💾 Saved: {final_filename}")
-                        print(f"   📄 Data: {data_filename}")
+                        print(f"   Saved: {final_filename}")
+                        print(f"   Data: {data_filename}")
                         
                     else:
                         print("   ✅ No potholes detected")
@@ -481,11 +480,11 @@ def capture_with_opencv_and_gps():
             # Print summary every 5 analyses
             if analysis_count % 5 == 0:
                 summary_msg = f"Summary: {analysis_count} analyses, {detection_count} potholes found"
-                print(f"📊 {summary_msg}")
+                print(f" {summary_msg}")
                 log_to_daily_file(summary_msg)
                 
     except KeyboardInterrupt:
-        print(f"\n🛑 Stopped by user")
+        print(f"\nStopped by user")
         log_to_daily_file("Session stopped by user")
     except Exception as e:
         print(f"❌ Error: {e}")
@@ -504,7 +503,7 @@ def capture_with_opencv_and_gps():
     
     # Final summary
     print("\n" + "=" * 50)
-    print(f"📊 FINAL SUMMARY:")
+    print(f"FINAL SUMMARY:")
     print(f"Total frames captured: {frame_count}")
     print(f"Frames analyzed by Landing AI: {analysis_count}")
     print(f"Potholes detected: {detection_count}")
@@ -521,7 +520,7 @@ def capture_with_opencv_and_gps():
 def main():
     """Main function with GPS setup options"""
     
-    print("🚀 JETSON POTHOLE DETECTION WITH GPS")
+    print("JETSON POTHOLE DETECTION WITH GPS")
     print("=" * 40)
     print("1. Start Detection with GPS")
     print("2. Test Camera Only")
@@ -536,7 +535,7 @@ def main():
     elif choice == "3":
         test_gps_only()
     else:
-        print("❌ Invalid choice")
+        print("Invalid choice")
 
 def test_camera_only():
     """Test camera without GPS"""
@@ -563,7 +562,7 @@ def test_camera_only():
 
 def test_gps_only():
     """Test GPS functionality"""
-    print("📍 Testing GPS...")
+    print("Testing GPS...")
     
     gps_tracker = GPSTracker(GPS_METHOD)
     
