@@ -2,19 +2,19 @@
 
 Real-time pothole detection system using Landing AI's computer vision platform integrated with NVIDIA Jetson edge computing and GPS tracking for municipal infrastructure monitoring.
 
-## 🎯 Features
+## Features
 
 - **Real-time pothole detection** using Landing AI's trained computer vision models
-- **Precise GPS coordinate logging** with multiple connection methods (GPSD, Serial, Mock)
+- **Precise GPS coordinate logging** with multiple connection methods (GPSD/Serial/Mock)
 - **Live camera feed** with detection overlays and system status
 - **Automated data management** with timestamped images and structured JSON logs
-- **Robust error handling** with retry logic and network resilience
+- **Error handling** with retry logic and network resilience
 - **Configurable monitoring** with adjustable capture intervals and confidence thresholds
-- **Multiple deployment modes** for testing camera, GPS, and full system operation
+- **Multiple deployment modes** for 1)Testing camera, 2)Testing GPS 3)Full system operation
 
-## 🛠️ Hardware Requirements
+## Hardware Requirements
 
-### Core Platform
+### Core Platform ( I used )
 - **Seeed Studio reComputer J40** with NVIDIA Jetson Orin NX 8GB
 - **reComputer J401 carrier board**
 - **128GB NVMe SSD** (included)
@@ -22,9 +22,8 @@ Real-time pothole detection system using Landing AI's computer vision platform i
 - **12V/5A power adapter** (included)
 
 ### Peripherals
-- **USB Camera**: Logitech C920 HD Pro Webcam (recommended) or compatible USB camera
+- **USB Camera**: 4K Webcam 
 - **GPS Module**: u-blox NEO-8M GPS receiver with USB interface
-- **External GPS Antenna** (optional, for improved signal reception)
 - **USB Hub** (if connecting multiple devices)
 
 ### Optional Accessories
@@ -32,7 +31,7 @@ Real-time pothole detection system using Landing AI's computer vision platform i
 - **Weatherproof enclosure** for outdoor installations
 - **12V vehicle power adapter** for automotive deployment
 
-## 📋 Software Dependencies
+## Software Dependencies
 
 ### System Requirements
 - **JetPack 4.6.1** (includes Ubuntu 18.04 LTS, CUDA 10.2, cuDNN 8.2)
@@ -70,7 +69,7 @@ sudo apt install -y gpsd gpsd-clients python3-gps
 # USB and Serial Support
 sudo apt install -y python3-serial
 
-# Development Tools (Optional)
+# Development Tools 
 sudo apt install -y python3-pip python3-venv git
 
 # Camera Utilities
