@@ -53,9 +53,9 @@ class GPSTracker:
         self.serial_connection = None
         self.last_known_location = None
         self.mock_location = {
-            "latitude": 33.6846,   # Irvine, CA (example, use gpa modeule for exact)
-            "longitude": -117.8265,
-            "altitude": 50.0,
+            "latitude": 39.6846,   # Irvine, CA (example, use gpa modeule for exact)
+            "longitude": -127.8265,
+            "altitude": 90.0,
             "speed": 0.0
         }
         
