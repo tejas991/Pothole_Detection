@@ -35,7 +35,7 @@ API_KEY = "land_sk_your-api-key-here"
 
 # CONFIGURATION
 CAMERA_ID = 0           # Whichever camera works for you
-CAPTURE_INTERVAL = 2.0  # Seconds between captures
+CAPTURE_INTERVAL = 1.0  # Seconds between captures
 CONFIDENCE_THRESHOLD = 0.5  # Minimum confidence to consider a detection
 SHOW_CAMERA = True      # Show live camera feed
 
