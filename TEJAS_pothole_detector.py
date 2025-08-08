@@ -29,7 +29,7 @@ try:
 except ImportError:
     SERIAL_GPS_AVAILABLE = False
 
-# YOUR LANDING AI CREDENTIALS - (update these in nano mode)
+# YOUR LANDING AI CREDENTIALS 
 ENDPOINT_ID = "your-endpoint-id-here"
 API_KEY = "land_sk_your-api-key-here"
 
