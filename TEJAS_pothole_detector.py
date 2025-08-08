@@ -1,5 +1,4 @@
 TEJAS_pothole_detecor.py
-#!/usr/bin/env python3
 """
 Jetson w/Camera --> Landing AI w/ GPS Location Tracking
 Captures frames from camera, detects potholes, and logs GPS coordinates
