@@ -12,7 +12,7 @@ from datetime import datetime
 from landingai.pipeline.frameset import Frame
 from landingai.predict import Predictor
 
-# GPS imports - install with: pip install gpsd-py3
+# GPS imports 
 try:
     import gpsd
     GPS_AVAILABLE = True
